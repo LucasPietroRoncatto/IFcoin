@@ -11,12 +11,12 @@ if (!$auth->isLoggedIn()) {
     exit;
 }
 
-// Obter lista de usuários
+// Obter lista completa de usuários (exceto senhas)
 try {
     $database = new Database();
     $db = $database->connect();
     
-    $stmt = $db->prepare("SELECT username, created_at FROM users ORDER BY created_at DESC");
+    $stmt = $db->prepare("SELECT id, username, email, created_at, password_changed_at, is_active FROM users ORDER BY created_at DESC");
     $stmt->execute();
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -31,11 +31,11 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFCoin - Lista de Usuários</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/users_list_style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Usuários Cadastrados</h1>
+        <h1>Lista de Usuários</h1>
         
         <?php if (isset($error)): ?>
             <div class="alert error"><?php echo htmlspecialchars($error); ?></div>
@@ -45,15 +45,23 @@ try {
             <table>
                 <thead>
                     <tr>
-                        <th>Nome de Usuário</th>
-                        <th>Data de Cadastro</th>
+                        <th>ID</th>
+                        <th>Nome de usuário</th>
+                        <th>Email</th>
+                        <th>Cadastrado em</th>
+                        <th>Senha alterada</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($users as $user): ?>
                         <tr>
+                            <td><?php echo htmlspecialchars($user['id']); ?></td>
                             <td><?php echo htmlspecialchars($user['username']); ?></td>
+                            <td><?php echo htmlspecialchars($user['email']); ?></td>
                             <td><?php echo date('d/m/Y H:i', strtotime($user['created_at'])); ?></td>
+                            <td><?php echo date('d/m/Y H:i', strtotime($user['password_changed_at'])); ?></td>
+                            <td><?php echo $user['is_active'] ? 'Ativo' : 'Inativo'; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -61,7 +69,7 @@ try {
         </div>
         
         <div class="actions">
-            <a href="dashboard.php" class="btn">Voltar ao Painel</a>
+            <a href="dashboard.php" class="btn">Voltar ao Painel Principal</a>
         </div>
     </div>
 </body>
