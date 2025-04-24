@@ -1,75 +1,75 @@
 **Sistema de Autenticação Segura - IFCoin (PHP/MariaDB)**
 
 
-Projeto: Desenvolvimento de um sistema completo de autenticação segura para plataforma financeira, seguindo rigorosos padrões de segurança.
+- Projeto: Desenvolvimento de um sistema completo de autenticação segura para plataforma financeira, seguindo rigorosos padrões de segurança.
 
 **Principais Funcionalidades Implementadas**
 
 
-  Cadastro com validação de senha forte;
+  - Cadastro com validação de senha forte;
   
-  Mínimo 8 caracteres;
+  - Mínimo 8 caracteres;
   
-  Requer maiúsculas, minúsculas, números e caracteres especiais.
+  - Requer maiúsculas, minúsculas, números e caracteres especiais.
 
 **Controle de segurança avançado:**
 
 
-  Troca obrigatória de senha a cada 45 dias;
+  - Troca obrigatória de senha a cada 45 dias;
   
-  Bloqueio de reutilização das últimas 7 senhas;
+  - Bloqueio de reutilização das últimas 7 senhas;
   
-  Armazenamento seguro com hash bcrypt.
+  - Armazenamento seguro com hash bcrypt.
 
 **Módulos Desenvolvidos:**
 
 
-  Sistema de login/logout seguro;
+  - Sistema de login/logout seguro;
   
-  Dashboard de usuário;
+  - Dashboard de usuário;
   
-  Gerenciamento de senhas;
+  - Gerenciamento de senhas;
   
-  Listagem de usuários (admin);
+  - Listagem de usuários (admin);
   
-  Tecnologias e Habilidades Demonstradas.
+  - Tecnologias e Habilidades Demonstradas.
 
 **Backend:**
 
 
-PHP 7.4+ com PDO;
+  - PHP 7.4+ com PDO;
 
-MariaDB/MySQL (modelagem de banco de dados);
+  - MariaDB/MySQL (modelagem de banco de dados);
 
-Sessões seguras (HTTP Only, Strict Mode).
+  - Sessões seguras (HTTP Only, Strict Mode).
 
 **Frontend:**
 
 
-HTML5 semântico;
+  - HTML5 semântico;
 
-CSS3 responsivo;
+  - CSS3 responsivo;
 
-Proteção contra XSS.
+  - Proteção contra XSS.
 
 **Segurança:**
 
 
-  Prevenção contra ataques de força bruta;
+  - Prevenção contra ataques de força bruta;
   
-  Proteção de sessão;
+  - Proteção de sessão;
   
-  Validação rigorosa de inputs.
+  - Validação rigorosa de inputs.
 
 **Destaques do Projeto**
 
 
-  Arquitetura MVC-like organizada;
+  - Arquitetura MVC-like organizada;
   
-  Migrações de banco de dados SQL;
+  - Migrações de banco de dados SQL;
   
-  Tratamento de erros profissional;
+  - Tratamento de erros profissional;
   
-  Documentação clara do código;
+  - Documentação clara do código;
   
-  Interface intuitiva e acessível.
+  - Interface intuitiva e acessível.
