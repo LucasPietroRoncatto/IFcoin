@@ -22,13 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $confirm_password = $_POST['confirm_password'];
         
         if ($new_password !== $confirm_password) {
-            throw new Exception("New passwords do not match.");
+            throw new Exception("Nova senha não coincide.");
         }
         
         $auth->changePassword($_SESSION['user_id'], $current_password, $new_password);
-        $success = "Password changed successfully!";
+        $success = "Senha alterada com sucesso!";
         
-        // Se estava expirada, redirecionar para o dashboard após 3 segundos
+        // Sessão expirada, redirecionar para o dashboard/painel
         if ($is_expired) {
             header("Refresh: 3; url=dashboard.php");
         }
