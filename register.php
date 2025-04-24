@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $auth->register($username, $email, $password);
-        $success = "Registration successful! You can now login.";
+        $success = "Registrado com sucesso, agora você pode logar";
     } catch (Exception $e) {
         $error = $e->getMessage();
     }
