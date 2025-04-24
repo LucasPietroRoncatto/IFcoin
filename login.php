@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = $e->getMessage();
         
         // Se a senha expirou, redirecionar para a página de troca de senha
-        if (strpos($error, 'password has expired') !== false && isset($_SESSION['user_id'])) {
+        if (strpos($error, 'senha expirou') !== false && isset($_SESSION['user_id'])) {
             header("Location: change_password.php?expired=1");
             exit;
         }
