@@ -1,1 +1,87 @@
+.users-list {
+    width: 98%;
+    max-height: 75vh;
+    min-height: 400px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    padding: 10px;
+    background: white;
+}
 
+.users-list table {
+    width: 100%;
+    min-width: 1200px;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+.users-list th, .users-list td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.users-list th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #2c3e50;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+}
+
+.users-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.users-list tr:hover {
+    background-color: #f1f5fd;
+}
+
+.users-list td {
+    word-break: normal;
+    white-space: nowrap;
+    max-width: none;
+}
+
+.users-list tr:last-child td {
+    border-bottom: 1px solid #eee;
+}
+
+/* Barra de rolagem personalizada */
+.users-list::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.users-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.users-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.users-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .users-list {
+        min-height: 300px;
+        padding: 5px;
+    }
+    
+    .users-list th, .users-list td {
+        padding: 12px 15px;
+    }
+}
