@@ -4,7 +4,7 @@ class SessionManager {
         if (session_status() == PHP_SESSION_NONE) {
             // Aplicar configurações ANTES de iniciar a sessão
             ini_set('session.cookie_httponly', 1);
-            ini_set('session.cookie_secure', 0); // Mude para 1 se usar HTTPS
+            ini_set('session.cookie_secure', 0); // Mudar para 1 se for usar HTTPS
             ini_set('session.use_strict_mode', 1);
             
             session_start();
