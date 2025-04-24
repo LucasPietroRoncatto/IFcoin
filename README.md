@@ -1,4 +1,5 @@
 **Sistema de Autenticação Segura - IFCoin (PHP/MariaDB)**
+
 Projeto: Desenvolvimento de um sistema completo de autenticação segura para plataforma financeira, seguindo rigorosos padrões de segurança.
 
 **Principais Funcionalidades Implementadas**
