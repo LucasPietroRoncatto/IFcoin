@@ -74,7 +74,7 @@
   
   - Interface intuitiva e acessível.
 
-    **Ferramentas de suporte**
+**Ferramentas de suporte**
 
 
-    - DeepSeek.
+  - DeepSeek.
