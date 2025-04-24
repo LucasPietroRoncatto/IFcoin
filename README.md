@@ -73,3 +73,8 @@
   - Documentação clara do código;
   
   - Interface intuitiva e acessível.
+
+    **Ferramentas de suporte**
+
+
+    - DeepSeek.
