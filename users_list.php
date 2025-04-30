@@ -5,13 +5,13 @@ require_once __DIR__ . '/includes/session_manager.php';
 $session = new SessionManager();
 $auth = new Auth();
 
-// Verificar se está logado
+
 if (!$auth->isLoggedIn()) {
     header("Location: login.php");
     exit;
 }
 
-// Obter lista completa de usuários (exceto senhas)
+
 try {
     $database = new Database();
     $db = $database->connect();
