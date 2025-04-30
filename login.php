@@ -5,7 +5,7 @@ require_once __DIR__ . '/includes/session_manager.php';
 $session = new SessionManager();
 $auth = new Auth();
 
-// Se já estiver logado, redirecionar
+
 if ($auth->isLoggedIn()) {
     header("Location: dashboard.php");
     exit;
@@ -20,13 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         $auth->login($username, $password);
         
-        // Redirecionar para o dashboard
+        
         header("Location: dashboard.php");
         exit;
     } catch (Exception $e) {
         $error = $e->getMessage();
         
-        // Se a senha expirou, redirecionar para a página de troca de senha
+        
         if (strpos($error, 'senha expirou') !== false && isset($_SESSION['user_id'])) {
             header("Location: change_password.php?expired=1");
             exit;
