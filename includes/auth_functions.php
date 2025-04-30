@@ -12,14 +12,14 @@ class Auth {
         $this->passwordPolicy = new PasswordPolicy();
     }
 
-    // Registrar novo usuário
+    
     public function register($username, $email, $password) {
-        // Validar senha
+        
         if (!$this->passwordPolicy->validate($password)) {
             throw new Exception("Password does not meet security requirements.");
         }
 
-        // Verificar se usuário ou email já existem
+        
         $stmt = $this->db->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
         $stmt->execute([$username, $email]);
         
@@ -27,23 +27,23 @@ class Auth {
             throw new Exception("Username or email already exists.");
         }
 
-        // Hash da senha
+        
         $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
-        // Inserir usuário
+        
         $stmt = $this->db->prepare("INSERT INTO users (username, email, password_hash, password_changed_at) VALUES (?, ?, ?, NOW())");
         $stmt->execute([$username, $email, $password_hash]);
 
-        // Registrar no histórico de senhas
+        
         $user_id = $this->db->lastInsertId();
         $this->addToPasswordHistory($user_id, $password_hash);
 
         return $user_id;
     }
 
-    // Login do usuário
+    
     public function login($username, $password) {
-        // Buscar usuário
+        
         $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ? AND is_active = TRUE");
         $stmt->execute([$username]);
         
@@ -53,21 +53,21 @@ class Auth {
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Verificar senha
+       
         if (!password_verify($password, $user['password_hash'])) {
             throw new Exception("Invalid username or password.");
         }
 
-        // Verificar se a senha expirou
+        
         $password_age = time() - strtotime($user['password_changed_at']);
-        $max_password_age = 45 * 24 * 60 * 60; // 45 dias em segundos
+        $max_password_age = 45 * 24 * 60 * 60; 
         
         if ($password_age > $max_password_age) {
-            $_SESSION['user_id'] = $user['id']; // Temporário para permitir troca de senha
+            $_SESSION['user_id'] = $user['id']; 
             throw new Exception("Your password has expired. Please change it now.");
         }
 
-        // Iniciar sessão
+       
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['last_activity'] = time();
@@ -75,9 +75,9 @@ class Auth {
         return true;
     }
 
-    // Trocar senha
+    
     public function changePassword($user_id, $current_password, $new_password) {
-        // Verificar senha atual
+        
         $stmt = $this->db->prepare("SELECT password_hash FROM users WHERE id = ?");
         $stmt->execute([$user_id]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -86,17 +86,17 @@ class Auth {
             throw new Exception("Current password is incorrect.");
         }
 
-        // Validar nova senha
+        
         if (!$this->passwordPolicy->validate($new_password)) {
             throw new Exception("New password does not meet security requirements.");
         }
 
-        // Verificar se a senha foi usada recentemente
+        
         if ($this->isPasswordInHistory($user_id, $new_password, 7)) {
             throw new Exception("You cannot reuse any of your last 7 passwords.");
         }
 
-        // Atualizar senha
+        
         $new_password_hash = password_hash($new_password, PASSWORD_BCRYPT);
         $stmt = $this->db->prepare("UPDATE users SET password_hash = ?, password_changed_at = NOW() WHERE id = ?");
         $stmt->execute([$new_password_hash, $user_id]);
