@@ -5,7 +5,7 @@ require_once __DIR__ . '/includes/session_manager.php';
 $session = new SessionManager();
 $auth = new Auth();
 
-// Verificar se está logado
+
 if (!$auth->isLoggedIn()) {
     header("Location: login.php");
     exit;
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $auth->changePassword($_SESSION['user_id'], $current_password, $new_password);
         $success = "Senha alterada com sucesso!";
         
-        // Sessão expirada, redirecionar para o dashboard/painel
+       
         if ($is_expired) {
             header("Refresh: 3; url=dashboard.php");
         }
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Obter informações do usuário
+
 $user = $auth->getUser($_SESSION['user_id']);
 ?>
 
