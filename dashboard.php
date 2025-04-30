@@ -5,26 +5,26 @@ require_once __DIR__ . '/includes/session_manager.php';
 $session = new SessionManager();
 $auth = new Auth();
 
-// Verificar se está logado
+
 if (!$auth->isLoggedIn()) {
     header("Location: login.php");
     exit;
 }
 
-// Verificar se a sessão expirou
+
 if ($session->isSessionExpired()) {
     $session->destroy();
     header("Location: login.php?expired=1");
     exit;
 }
 
-// Atualizar última atividade
+
 $_SESSION['last_activity'] = time();
 
-// Obter informações do usuário
+
 $user = $auth->getUser($_SESSION['user_id']);
 
-// Calcular dias até a expiração da senha
+
 $password_changed = new DateTime($user['password_changed_at']);
 $now = new DateTime();
 $days_since_change = $now->diff($password_changed)->days;
